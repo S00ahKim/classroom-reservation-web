@@ -1,33 +1,28 @@
 doctype html
 html
   head
-    title 명지대학교 공강공강
+    title 공강 공강 돌을 던지자
     meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css')
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='https://code.jquery.com/jquery-3.2.1.min.js')
-    
-    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet', integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN', crossorigin='anonymous')
-    script(src='https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js', type='text/javascript')
-    link(href='https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css', rel='stylesheet', type='text/css')
-
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js')
     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js')
+
+    //- Notify 라이브러리 import: http://bootstrap-notify.remabledesigns.com/ 
     script(src='/javascripts/bootstrap-notify.js')
 
     //- this application
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/index.css')
-    link(rel='stylesheet', href='/stylesheets/loginView.css')
-    link(rel='stylesheet', href='/stylesheets/reservation.css')
     script(src='/javascripts/application.js')
-    script(src='/javascripts/reservation.js')
+
+    //- socket io
+    script(src='/socket.io/socket.io.js') 
 
   body
-    header
-      h3 명지대학교 공강공강
-      hr
+    block top-nav
+      include ./includes/topnav
+    block hero-unit
     if flashMessages
       each texts, type in flashMessages
         .container
@@ -38,8 +33,16 @@ html
               span(aria-hidden='true') &times;
     block content
 
-    hr
-    .footer
-      p.team MJU LUNAS
-      p 김민수, 김수아, 배수혜, 이준석, 이예은, 정찬영, 최리안, 최민지
+    block footer
+      include ./includes/footer
 
+    script.
+
+      // WebSocket을 만들고 접속
+      var socket = io();
+
+      socket.on('welcome', function() {
+        // welcome 메시지를 받으면 join을 보낸다.
+        console.log('received welcome');
+        socket.emit('join');
+      });

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .container
+    table
+      thead.thead-dark
+        tr
+          th(scope="col") 개인정보 처리 방침
+      tbody
+        tr
+          td(scope="row")
+            p 1. 로그인을 통한 개인정보(학번, 연락처)는 예약 과정과 확인을 위해서만 사용됩니다.
+            p 2. 위의 개인정보는 사용자의 시스템 탈퇴 이전까지 보관됩니다.
+            p 3. 비밀번호는 암호화되어 저장됩니다.
+            p 4. 위 개인정보 활용 방식을 거부할 수 있으며, 이 경우 시스템 이용이 불가능합니다. 로그인시 방침에 동의하는 것으로 간주합니다.
+
+    .clearfix
+      form.form-signin(action='/signin', method='POST')
+        h3.form-signin-heading 로그인
+        label.sr-only(for='studentID') 학번
+        input(
+          type='text', id='studentID', name='studentID', class='form-control', 
+          placeholder='학번', required, autofocus
+        )
+        label.sr-only(for='password') 비밀번호
+        input(
+          type='password', id='password', name='password', class='form-control', 
+          placeholder='비밀번호', required, autofocus
+        )
+        .checkbox
+          label 
+            input(type="checkbox", value="remember-me")
+            |
+            | 로그인 유지
+        button.btn.btn-primary.btn-block(type='submit') 로그인
+
+        div.sub
+          a(href='/users/new') 회원가입
+          | &nbsp;하러 가기
