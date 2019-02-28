@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session');
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
@@ -54,13 +53,13 @@ app.use(cookieParser());
 app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
 // sass, scss를 사용할 수 있도록
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: false, // true = .sass and false = .scss
-  debug: true,
-  sourceMap: true
-}));
+// app.use(sassMiddleware({
+//   src: path.join(__dirname, 'public'),
+//   dest: path.join(__dirname, 'public'),
+//   indentedSyntax: false, // true = .sass and false = .scss
+//   debug: true,
+//   sourceMap: true
+// }));
 
 // session을 사용할 수 있도록.
 app.use(session({
