@@ -11,11 +11,11 @@ const Schema = mongoose.Schema;
     */
 
 var schema = new Schema({
-  name: {type: String, trim: true},
-  role: {type:String}, //관리자 계정 만들 경우를 가정함
-  studentID: {type: String, required: true, trim: true},
-  password: {type: String},
-  contact: {type: String}
+  name: {type: String, required: true, trim: true},
+  role: {type:String}, 
+  studentID: {type: String, required: true, index: true, unique: true, trim: true},
+  password: {type: String, required: true, trim: true},
+  contact: {type: String, required: true, trim: true}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}
