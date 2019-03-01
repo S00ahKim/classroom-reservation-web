@@ -1,0 +1,38 @@
+extends ../layout
+
+//- 회원가입 
+block content
+  .container 
+    table
+      thead.thead-dark
+        tr
+          th(scope="col") 개인정보 처리 방침
+      tbody
+        tr
+          td(scope="row")
+            p 1. 로그인을 통한 개인정보(학번, 연락처)는 예약 과정과 확인을 위해서만 사용됩니다.
+            p 2. 위의 개인정보는 사용자의 시스템 탈퇴 이전까지 보관됩니다.
+            p 3. 비밀번호는 암호화되어 저장됩니다.
+            p 4. 위 개인정보 활용 방식을 거부할 수 있으며, 이 경우 시스템 이용이 불가능합니다. 가입시 방침에 동의하는 것으로 간주합니다.
+
+    h1.main-title 회원가입
+    .container
+      p(style="font-weight:bold; font-size:1.3em") 개인정보처리방침
+        include _personalinfo
+      p(style="font-weight:bold; font-size:1.3em") 서비스 약관
+        include _service
+    form(action='/users', method='POST')
+      .form-group
+        label(for='name') 이름
+        input.form-control(type='text', id='name', name='name', placeholder='이름 ex.김명지')
+      .form-group
+        label(for='studentID') 이메일
+        input.form-control(type='text', id='studentID', name='studentID', placeholder='학번 ex.60000000')
+      .form-group
+        label(for='password') 비밀번호
+        input.form-control(type='password', id='password', name='password', placeholder='비밀번호')
+      .form-group
+        label(for='password_confirmation') 비밀번호 확인
+        input.form-control(type='password', id='password_confirmation', name='password_confirmation', placeholder='비밀번호 확인')
+
+      button.btn.btn-primary(type='submit') 가입하기

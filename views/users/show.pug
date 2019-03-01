@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title= user.name
+          
+    dl.row
+      dt.col-sm-3 학번
+      dd.col-sm-9= user.studentID
+
+      dt.col-sm-3 가입일자
+      dd.col-sm-9= user.createdAt
+
+    
+    p(style="float:right")
+      a.btn.btn-outline-primary(href=`/users/${user._id}/edit`) 내 정보 수정
+      | 
+      a.btn.btn-outline-danger.need-confirm-btn(href=`/users/${user._id}?_method=DELETE`) 탈퇴하기
+
+    br
+    br

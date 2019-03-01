@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 사용자
+    
+    table.table.table-hover
+      thead
+        tr
+          th 이름
+          th 학번
+          th 가입일자
+          th
+      tbody
+        each user in users
+          tr
+            td
+              a(href=`/users/${user._id}`)= user.name
+            td= user.studentID
+            td= moment(user.createdAt).format('YYYY-MM-DD HH:mm:ss')
+            td
+              a.btn.btn-sm.btn-outline-secondary(href=`/users/${user._id}/editAdmin`) 
+                | #[i.fa.fa-pencil] 정보 수정
+              | 
+              a.btn.btn-sm.need-confirm-btn.btn-outline-danger(href=`/users/${user._id}?_method=DELETE`)
+                | #[i.fa.fa-trash] 탈퇴하기
+    if (currentUser.role == "manager")
+      a.btn.btn-primary(href='/users/new-admin') #[i.fa.fa-plus] 새로운 사용자 계정 생성

@@ -9,7 +9,7 @@ const Schema = mongoose.Schema;
     date 예약 날짜
     createdAt 예약 순간의 시각 정보
     object 예약 목적
-
+    ulif 승인 여부
     */
 
 var schema = new Schema({
@@ -19,7 +19,8 @@ var schema = new Schema({
   end: { type: Number, required: true, trim: true }, 
   date: { type: Date, required: true, trim: true },  
   createdAt: {type: Date, default: Date.now},
-  object: {type: String, required: true, trim: true}
+  object: {type: String, required: true, trim: true},
+  ulif: {type: String}
 }, {
   toJSON: { virtuals: true},
   toObject: {virtuals: true}

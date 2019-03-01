@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 승인 대기 중인 요청
+    p 주의: 예약 시각이 빠른 경우를 먼저 승인해주세요.
+          
+    br
+    if reservations
+      table.table.table-hover
+        thead
+          tr
+            th 신청인 학번
+            th 신청 강의실
+            th 예약 시각
+            th 이용 시작
+            th 이용 완료
+            th 목적
+            th 
+        tbody
+            each a in reservations
+              tr
+                td= a.booker
+                td= a.roomnum
+                td= a.createdAt
+                td= a.start
+                td= a.end
+                td= a.object
+                td
+                  a(href=`/reservations/${a._id}/upload`) 승인하기
+    else
+        p 승인 대기 중인 글이 없습니다.

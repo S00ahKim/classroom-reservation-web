@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 승인하기
+    p 해당 요청을 승인하시겠습니까?
+    form(action=`/reservations/${reservations.id}/upload?_method=PUT`, method="POST")
+      .form-group
+        label(for="ulif")  
+        select.form-control(name="ulif")=reservations.ulif
+            option(value="ok") 승인할 경우, 다른 이용자들이 확인할 수 있습니다.
+      button.btn.btn-outline-primary(type="submit") 승인
+
+  script(src='/javascripts/application.js')
