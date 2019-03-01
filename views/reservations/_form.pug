@@ -1,0 +1,34 @@
+.form-group
+  label(for="roomnum") 강의실
+  input.form-control(type="text", name="roomnum", placeholder="강의실을 입력해 주세요. ex.S1541", value=reservations.roomnum)
+
+
+.form-group
+  label(for="object") 예약 목적 &nbsp;
+  select.form-control(name="object")= reservation.object
+    option(value="study") 학습
+    option(value="meeting") 회의
+    option(value="class") 수업
+    option(value="etc") 기타
+
+.form-group
+  label(for="booker") 예약자 학번
+  input.form-control(type="text", name="booker", placeholder="신청하는 사람의 학번을 기재해 주세요.", value=reservation.studentID)
+
+.form-group
+  label(for="start") 시작 시각
+  input.form-control(type="time", name="start", placeholder="시작 시각을 입력해 주세요.", value=reservation.start)
+
+.form-group
+  label(for="end") 종료 시각
+  input.form-control(type="time", name="end", placeholder="종료 시각을 입력해 주세요.", value=reservation.end)
+
+.form-group
+  label(for="date") 예약하고자 하는 날짜
+  input.form-control(type="date", name="date", placeholder="예약하고자 하는 날짜를 입력하세요.", value=reservation.date)
+
+.form-group
+  select.form-control(name="ulif")=compInfo.ulif
+    option(value="wait") 모든 예약은 관리자의 승인이 필요합니다.
+    if currentUser.role == "manager"
+      option(value="upload") 예약과 동시에 승인하기

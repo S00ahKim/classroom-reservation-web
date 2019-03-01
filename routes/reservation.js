@@ -5,7 +5,6 @@ const router = express.Router();
 const catchErrors = require('../lib/async-error');
 const request = require('request');
 const passport = require('passport');
-const classroom = require('../models/classroom');
 
 function needAuth(req, res, next) {
   if (req.session.user) {

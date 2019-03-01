@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  .container
+    h1.main-title 강의실 예약하기
+    form(action="/reservations", method="POST")
+      include _form
+      button.btn.btn-outline-primary(type="submit") 등록
+
+  script(src='/javascripts/application.js')
