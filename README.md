@@ -1,4 +1,4 @@
-# 강의실 예약 시스템 구축
+# 강의실 예약 시스템 "공강 공강 돌을 던지자"
 #### this repository is simplified version of original system by S00ahKim
 
 ##### forked from https://github.com/yeah33/classroom-reservation-web
