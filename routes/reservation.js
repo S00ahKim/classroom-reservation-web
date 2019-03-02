@@ -6,6 +6,8 @@ const catchErrors = require('../lib/async-error');
 const request = require('request');
 const passport = require('passport');
 
+//- 수정필요
+
 function needAuth(req, res, next) {
   if (req.session.user) {
     next();

@@ -6,6 +6,8 @@ const catchErrors = require('../lib/async-error');
 const request = require('request');
 const passport = require('passport');
 
+//- 수정필요
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('login');

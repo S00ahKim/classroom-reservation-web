@@ -3,16 +3,16 @@ module.exports = (app, passport) => {
     res.render('login');
   });
 
-  app.post('/login', passport.authenticate('local-signin', {
-    successRedirect : '/home', // redirect to the secure profile section
-    failureRedirect : '/', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
+  app.post('/signin ', passport.authenticate('local-signin', {
+    successRedirect : '/',  
+    failureRedirect : '/signin',  
+    failureFlash : true  
   }));
 
   
   app.get('/signout', (req, res) => {
     req.logout();
-    req.flash('success', 'Successfully signed out');
-    res.redirect('/');
+    req.flash('success', '로그아웃 되었습니다.');
+    res.redirect('/signin');
   });
 };
