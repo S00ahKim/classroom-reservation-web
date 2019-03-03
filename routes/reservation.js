@@ -6,14 +6,14 @@ const catchErrors = require('../lib/async-error');
 const request = require('request');
 const passport = require('passport');
 
-//- 수정필요
+//- 수정필요: 예약 방식 다수 변경, 검색 기능 다른 방식으로 구현 필요
 
 function needAuth(req, res, next) {
   if (req.session.user) {
     next();
   } else {
-    req.flash('danger', 'Please signin first.');
-    res.redirect('/login');
+    req.flash('danger', '먼저 로그인 해주세요.');
+    res.redirect('/signin');
   }
 }
 

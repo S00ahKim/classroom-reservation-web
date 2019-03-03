@@ -3,41 +3,46 @@ const User = require('../models/user');
 const Reservation = require('../models/reservation');
 const router = express.Router();
 const catchErrors = require('../lib/async-error');
-const request = require('request');
-const passport = require('passport');
 
-//- 수정필요
+//- TODO: 라우터 추가 필요
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('login');
-});
+function needAuth(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    req.flash('danger', '먼저 로그인 해주세요.');
+    res.redirect('/signin');
+  }
+}
 
-// router.post('/login', passport.authenticate('local-signin', {
-//   successRedirect : '/home', // redirect to the secure profile section
-//   failureRedirect : '/', // redirect back to the signup page if there is an error
-//   failureFlash : true // allow flash messages
-// }));
+function validateForm(form, options) {
+  var name = form.name || "";
+  var studentID = form.studentID || "";
+  name = name.trim();
+  studentID = studentID.trim();
 
+  if (!name) {
+    return '이름이 입력되어야 합니다.';
+  }
 
-router.get('/login', function(req, res, next) {
-  res.render('login');
-});
+  if (!studentID) {
+    return '학번이 입력되어야 합니다.';
+  }
 
-router.post('/login', function(req, res, next) {
-  User.findOne({studentID: req.body.studentID}, function(err, user) {
-    if (err) {
-      res.render('error', {message: "Error", error: err});
-    } else if (!user || user.password !== req.body.password) {
-      req.flash('danger', 'Invalid username or password.');
-      res.redirect('back');
-    } else {
-      req.session.user = user;
-      req.flash('success', 'Welcome!');
-      res.redirect('/home');
-    }
-  });
-});
+  if (!form.password && options.needPassword) {
+    return '비밀번호가 입력되어야 합니다.';
+  }
+
+  if (form.password !== form.password_confirmation) {
+    return '비밀번호가 맞지 않습니다.';
+  }
+
+  if (form.password.length < 6) {
+    return '비밀번호는 최소 6글자 이상이어야 합니다.';
+  }
+
+  return null;
+}
 
 
 module.exports = router;
