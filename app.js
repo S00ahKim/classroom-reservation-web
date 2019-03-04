@@ -9,16 +9,15 @@ var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var mongoose   = require('mongoose');
 var passport = require('passport');
+var passportSocketIo = require('passport.socketio');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var reserves = require('./routes/reserves');
-var reservation = require('./routes/reservation');
 var reservation = require('./routes/reservation');
 
 var passportConfig = require('./lib/passport-config');
 
-var app = express();
+//- model.exports 방식으로 변경할 것.
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
