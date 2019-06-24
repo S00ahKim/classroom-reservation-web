@@ -1,0 +1,8 @@
+extends layout
+
+block hero-unit
+    .container
+    h1.main-title.text-danger Error #{error.status}
+    if error.status == 404
+        .alert.alert-danger 잘못된 접근입니다.
+    //- pre #{error.stack}

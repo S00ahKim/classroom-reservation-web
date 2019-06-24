@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  .container
+    br
+     
+    if myr 
+        table.table.table-hover
+            thead
+                th 인원
+                th 목적
+            tbody
+                each m in myr
+                    tr
+                        td.number
+                            if m.people_num == 1
+                                number=" 1 ~ 3명 "
+                            if m.people_num == 2
+                                number=" 4 ~ 6명 "
+                            if m.people_num == 3
+                                number=" 7 ~ 10명 "
+                            if m.people_num == 4
+                                number=" 10명 이상 "
+                        td= m.purpose
+
+        for m in myr
+            h5 시작 시각: #{m.start}시 ~ 종료 시각: #{m.end}시
+            p #{m.name} 님이 예약한 강의실 #{m.room_num}은 #{m.univ}의 #{m.depart}가 관리하고 있습니다. 문의할 것은 #{m.contact}으로 연락주세요.
+
+    else
+        .alert.alert-info 이 예약 번호의 예약이 존재하지 않습니다.
+
+    hr
+    button.btn.btn-secondary(data-toggle='tooltip', data-placement='right' title='수정 기능은 추후 제공 예정입니다.') 수정하기
+
+    script.
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
