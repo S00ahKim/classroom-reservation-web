@@ -4,5 +4,5 @@
 ## /software-engineering-project
 > 소프트웨어 공학 프로젝트 결과물
 
-## /software=engineering-documents
+## /software-engineering-documents
 > 소프트웨어 공학 프로젝트 문서 모음
